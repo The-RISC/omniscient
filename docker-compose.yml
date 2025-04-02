@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - AUTH_SERVICE_HOST=auth
+      - AUTH_SERVICE_PORT=3001
+      - QUIZ_SERVICE_HOST=quiz
+      - QUIZ_SERVICE_PORT=3002
+    depends_on:
+      - auth
+      - quiz
+    networks:
+      - quiz-network
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+    environment:
+      - MONGODB_URI=mongodb+srv://bhhoang:vEktNuvo2Z0qpRsE@nanikaclustor.mlolje2.mongodb.net/streamlitDB?retryWrites=true&w=majority&appName=NanikaClustor
+      - JWT_SECRET=votre_clé_secrète_jwt
+      - AUTH_SERVICE_PORT=3001
+      - AUTH_API_PORT=4001
+    ports:
+      - "4001:4001"
+    networks:
+      - quiz-network
+
+  quiz:
+    build:
+      context: .
+      dockerfile: ./apps/quiz/Dockerfile
+    environment:
+      - MONGODB_URI=mongodb+srv://bhhoang:vEktNuvo2Z0qpRsE@nanikaclustor.mlolje2.mongodb.net/streamlitDB?retryWrites=true&w=majority&appName=NanikaClustor
+      - JWT_SECRET=votre_clé_secrète_jwt
+      - QUIZ_SERVICE_PORT=3002
+      - QUIZ_API_PORT=4002
+    ports:
+      - "4002:4002"
+    networks:
+      - quiz-network
+
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   networks:
+  #     - quiz-network
+
+networks:
+  quiz-network:
+    driver: bridge
+
+volumes:
+  ollama_data:

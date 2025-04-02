@@ -1,0 +1,15 @@
+[submodule "apps/auth"]
+	path = apps/auth
+	url = https://github.com/The-RISC/auth-service.git
+[submodule "apps/api-gateway"]
+	path = apps/api-gateway
+	url = https://github.com/The-RISC/api-gateway.git
+[submodule "apps/quiz"]
+	path = apps/quiz
+	url = https://github.com/The-RISC/quiz-service.git
+[submodule "libs/common/src/auth"]
+	path = libs/common/src/auth
+	url = https://github.com/The-RISC/auth-lib.git
+[submodule "libs/common/src/database"]
+	path = libs/common/src/database
+	url = https://github.com/The-RISC/database-lib.git

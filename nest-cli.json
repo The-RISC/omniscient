@@ -1,0 +1,25 @@
+{
+  "monorepo": true,
+  "sourceRoot": "apps",
+  "entryFile": "index",
+  "projects": {
+    "api-gateway": {
+      "type": "application",
+      "root": "apps/api-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-gateway/src"
+    },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src"
+    },
+    "quiz": {
+      "type": "application",
+      "root": "apps/quiz",
+      "entryFile": "main",
+      "sourceRoot": "apps/quiz/src"
+    }
+  }
+}
