@@ -29,20 +29,19 @@
 ## Project setup
 
 ```bash
+# Install dependencies
+$ git submodule update --init --recursive
 $ yarn install
 ```
 
 ## Compile and run the project
 
 ```bash
-# development
-$ yarn run start
-
 # watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+## For auth service 
+$ yarn run start:dev auth
+## For quiz service
+$ yarn run start:dev quiz
 ```
 
 ## Run tests
